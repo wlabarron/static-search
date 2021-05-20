@@ -2,8 +2,8 @@ module.exports = {
     // URL of the JSON file containing the content to search.
     contentURL: "",
     // Keys which should be removed from the above JSON when returning
-    // search results (for example, remove the content so only the title)
-    // and summary are returned.
+    // search results (for example, remove the content so only the title
+    // and summary are returned).
     keysToRemove: [
         "content"
     ],
