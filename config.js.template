@@ -1,0 +1,27 @@
+module.exports = {
+    // URL of the JSON file containing the content to search.
+    contentURL: "",
+    // Keys which should be removed from the above JSON when returning
+    // search results (for example, remove the content so only the title)
+    // and summary are returned.
+    keysToRemove: [
+        "content"
+    ],
+    // A string which should be sent in an "Authentication" header
+    // when requesting the search index to be rebuilt.
+    authKey:    "Secure_Password",
+    // Options for Fuse search: https://fusejs.io/api/options.html
+    fuseOptions: {
+          keys: [
+            {
+                name: "title",
+                weight: 1.2
+            },
+            {
+                name: "content",
+                weight: 1
+            },
+          ],
+          findAllMatches: true
+        }
+}

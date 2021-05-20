@@ -1,0 +1,13 @@
+---
+layout: none
+---
+[
+    {%- for post in site.posts -%}
+        {
+            "url":     "{{- post.url     | absolute_url -}}",
+            "title":    {{- post.title   | jsonify      -}},
+            "content":  {{- post.content | jsonify      -}},
+            "excerpt":  {{- post.excerpt | jsonify      -}}
+        }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+]
