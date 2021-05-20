@@ -85,6 +85,9 @@ async function search(query) {
                 delete result["item"][key]
 
     return new Response(JSON.stringify(results), {
-        headers: { "Content-Type": "application/json;charset=UTF-8" }
+        headers: { 
+            "Content-Type":  "application/json;charset=UTF-8",
+            "Cache-Control": "private, max-age=1800" // cache result in browser only, for 30 mins
+        }
     }) 
 }
