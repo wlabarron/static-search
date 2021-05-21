@@ -1,5 +1,7 @@
 module.exports = {
-    // URL of the JSON file containing the content to search.
+    // URL of the JSON file containing the content to search. If there's a query
+    // string, end the URL with `&`. If there's not, end it with `?`. This is
+    // because a timestamp is appended to the URL as a cache buster.
     contentURL: "",
     // Keys which should be removed from the above JSON when returning
     // search results (for example, remove the content so only the title

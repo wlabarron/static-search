@@ -38,7 +38,7 @@ function isAuthenticated(request) {
  * Update the site content stored in Workers KV.
 */
 async function refreshContent() {
-    const response = await fetch(config.contentURL, {
+    const response = await fetch(config.contentURL + Date.now(), {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
     });
     
