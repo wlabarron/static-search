@@ -3,6 +3,9 @@ module.exports = {
     // string, end the URL with `&`. If there's not, end it with `?`. This is
     // because a timestamp is appended to the URL as a cache buster.
     contentURL: "",
+    // Base URL of the deployment (should be the same as the route in wrangler.toml).
+    // No trailing '/'. This should be the URL of your search page.
+    baseURL: "https://mysite/search",
     // Keys which should be removed from the above JSON when returning
     // search results (for example, remove the content so only the title
     // and summary are returned).

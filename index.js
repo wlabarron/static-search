@@ -11,18 +11,24 @@ addEventListener('fetch', event => {
  * Parse the GET parameters and trigger the appropriate function.
  */
 async function handleRequest(request) {
-    const url = new URL(request.url);
+    const url   = new URL(request.url);
+    const query = url.searchParams.get("q");
     
-    if (url.searchParams.get("refresh")) {
+    if (url.pathname.endsWith("refresh")) {
         if (isAuthenticated(request)) {
             return refreshContent();
         } else {
             return new Response("403 Forbidden", { status: 403 });
         }
+    } else if (url.pathname.endsWith("api")) {
+        return search(query);
     } else if (url.searchParams.get("q")) {
-        return search(url.searchParams.get("q"));
+        let response = await fetch(url.href)
+        response = new Response(response.body, response)
+        response.headers.set("Link", "<" + config.baseURL + "/api?q=" + query + ">; rel='preload'; as='fetch'")
+        return response
     } else {
-        return new Response("400 Bad Request", { status: 400 });
+        return fetch(url.href)
     }
 }
 
@@ -69,6 +75,8 @@ async function refreshContent() {
  * Perform a search for the given query.
 */
 async function search(query) {
+    if (!query) return new Response("400 Bad Request", { status: 400 }); 
+    
     let content   = await CONTENT.get("content");
     content       = JSON.parse(content);
     
