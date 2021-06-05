@@ -27,6 +27,7 @@ module.exports = {
                 weight: 1
             },
           ],
-          findAllMatches: true
+          findAllMatches: true,
+          ignoreLocation: true
         }
 }
